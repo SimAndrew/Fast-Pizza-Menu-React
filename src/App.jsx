@@ -1,35 +1,67 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import React from 'react';
 import './App.css';
 
-function App() {
-	const [count, setCount] = useState(0);
-
+export function App() {
 	return (
-		<>
-			<div>
-				<a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank" rel="noreferrer">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1> Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.jsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
-		</>
+		<div className={'container'}>
+			<Header />
+			<Menu />
+			<Footer />
+		</div>
 	);
 }
 
-export default App;
+function Header() {
+	return (
+		<header className={'header'}>
+			<h1>Fast React Pizza Co.</h1>
+		</header>
+	);
+}
+
+function Menu() {
+	return (
+		<main className={'menu'}>
+			<h2>Our menu</h2>
+			<Pizza
+				name="Pizza Spinaci"
+				ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+				photoName="pizzas/spinaci.jpg"
+				price={10}
+			/>
+			<Pizza
+				name="Pizza Funghi"
+				ingredients="Tomato, mozarella, mushrooms, and onion"
+				photoName="pizzas/funghi.jpg"
+				price={12}
+			/>
+		</main>
+	);
+}
+
+function Pizza(props) {
+	return (
+		<div className="pizza">
+			<img src={props.photoName} alt={props.name} />
+			<div>
+				<h3>{props.name}</h3>
+				<p>{props.ingredients}</p>
+				<span>{props.price}</span>
+			</div>
+		</div>
+	);
+}
+
+function Footer() {
+	const hour = new Date().getHours();
+	const openHour = 12;
+	const closeHour = 22;
+	const isOpen = hour >= openHour && hour <= closeHour;
+	console.log(isOpen);
+
+	return (
+		<footer className={'footer'}>
+			{new Date().toLocaleTimeString()}. We are current open!
+		</footer>
+	);
+}
