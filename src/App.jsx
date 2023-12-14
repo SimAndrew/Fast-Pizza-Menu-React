@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 
 const pizzaData = [
@@ -73,11 +74,17 @@ function Menu() {
 			<h2>Our menu</h2>
 
 			{numPizzas > 0 ? (
-				<ul className="pizzas">
-					{pizzas.map((pizza) => (
-						<Pizza pizzaObj={pizza} key={pizza.name} />
-					))}
-				</ul>
+				<>
+					<p>
+						Authentic Italian cuisine. 6 creative dishes to choose from. All
+						from our stone oven, all organic, all delicious.
+					</p>
+					<ul className="pizzas">
+						{pizzas.map((pizza) => (
+							<Pizza pizzaObj={pizza} key={pizza.name} />
+						))}
+					</ul>
+				</>
 			) : (
 				<p>We are still working on our menu. Please come back later!</p>
 			)}
